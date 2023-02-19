@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "81488993802",
+    "project_id": "odas-trl-framework",
+    "storage_bucket": "odas-trl-framework.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81488993802:android:b4ba939c6606fa9fe2c9f3",
+        "android_client_info": {
+          "package_name": "com.example.odas_trl_framework"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81488993802-rkqcgg3qfhep7b5bte2us745vv8akcuu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsCacH2JM3M7Jxxf0-8A_36fgXSwomCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81488993802-rkqcgg3qfhep7b5bte2us745vv8akcuu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81488993802-mtm3u77l5s35hq19n4e5o8nnqb40utf1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.odasTrlFramework"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
