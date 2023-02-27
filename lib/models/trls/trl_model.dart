@@ -33,13 +33,14 @@ class TrlModel {
       "Um ODAS potencial especificado tecnicamente foi identificado (para o Hardware)?", //seleção de componentes no mercado
       //"Foram estudadas tecnologias a serem desenvolvidas/aquisitadas com base nos requisitos de desempenho definidos?"
       //    "(Microcontroladores, instrumentos, fontes de energia, adaptadores, entre outros)",
-      "Os desempenhos requisitados foram alcançados inicialmente (para o Hardware)?", //testes iniciais nos componentes aquisitados
       //"Estudos em papel mostram que a tecnologia é viável?",
       //"Foram definidos os elementos do ODAS que deverão ser aquisitados?",
-      "Os processos de integração e os primeiros experimentos necessários para o desenvolvimento foram identificados (para o Hardware)?",
+      "Os primeiros experimentos necessários para o desenvolvimento foram planejados (para o Hardware)?",
     ],
     // TRL 3
     [
+      "Os desempenhos requisitados foram alcançados inicialmente (para o Hardware)?", //testes iniciais nos componentes aquisitados
+      
       //"Foi realizada a seleção e aquisição de elementos constituintes?",
     ],
     // TRL 4
@@ -67,12 +68,12 @@ class TrlModel {
     [
       "Os Requisitos de Desempenho foram definidos e inicialmente quantificados e/ou qualificados (para o Software)?",
       "Os conceitos das inovações propostas são viáveis (para o Software)?",
+      "Os primeiros experimentos necessários para o desenvolvimento foram planejados (para o Software)?",
       "Uma primeira versão do Software foi codificada?",
-      "Os desempenhos requisitados foram alcançados inicialmente (para o Software)?",
-      "Os processos de integração e os primeiros experimentos necessários para o desenvolvimento foram identificados (para o Software)?",
     ],
-    // TRL 2
-    [""],
+    // TRL 3
+    ["Os desempenhos requisitados foram alcançados inicialmente (para o Software)?",
+      ],
     // TRL 2
     [""],
     // TRL 2
