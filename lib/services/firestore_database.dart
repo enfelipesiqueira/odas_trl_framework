@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:noteapp/models/todo_model.dart';
-import 'package:noteapp/services/firestore_path.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:odas_trl_framework/models/project_model.dart';
+import 'package:odas_trl_framework/services/firestore_path.dart';
+import 'package:odas_trl_framework/services/firestore_service.dart';
 
-import 'package:noteapp/services/firestore_service.dart';
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 
@@ -26,31 +26,32 @@ class FirestoreDatabase {
 
   final _firestoreService = FirestoreService.instance;
 
-  //Method to create/update todoModel
-  Future<void> setTodo(TodoModel todo) async => await _firestoreService.set(
-        path: FirestorePath.todo(uid, todo.id),
-        data: todo.toMap(),
+  //Method to create/update projectModel
+  Future<void> setProject(ProjectModel project) async => await _firestoreService.set(
+        path: FirestorePath.project(uid, project.id),
+        data: project.toMap(),
       );
 
-  //Method to delete todoModel entry
-  Future<void> deleteTodo(TodoModel todo) async {
-    await _firestoreService.deleteData(path: FirestorePath.todo(uid, todo.id));
+  //Method to delete projectModel entry
+  Future<void> deleteTodo(ProjectModel project) async {
+    await _firestoreService.deleteData(path: FirestorePath.project(uid, project.id));
   }
 
-  //Method to retrieve todoModel object based on the given todoId
-  Stream<TodoModel> todoStream({required String todoId}) =>
+  //Method to retrieve todoModel object based on the given projectId
+  Stream<ProjectModel> projectStream({required String projectId}) =>
       _firestoreService.documentStream(
-        path: FirestorePath.todo(uid, todoId),
-        builder: (data, documentId) => TodoModel.fromMap(data, documentId),
+        path: FirestorePath.project(uid, projectId),
+        builder: (data, documentId) => ProjectModel.fromMap(data, documentId),
       );
 
-  //Method to retrieve all todos item from the same user based on uid
-  Stream<List<TodoModel>> todosStream() => _firestoreService.collectionStream(
-        path: FirestorePath.todos(uid),
-        builder: (data, documentId) => TodoModel.fromMap(data, documentId),
+  //Method to retrieve all projects item from the same user based on uid
+  Stream<List<ProjectModel>> projectsStream() => _firestoreService.collectionStream(
+        path: FirestorePath.projects(uid),
+        builder: (data, documentId) => ProjectModel.fromMap(data, documentId),
       );
 
-  //Method to mark all todoModel to be complete
+/*
+  //Method to mark all projectModel to be complete
   Future<void> setAllTodoComplete() async {
     final batchUpdate = FirebaseFirestore.instance.batch();
 
@@ -76,5 +77,5 @@ class FirestoreDatabase {
       batchDelete.delete(ds.reference);
     }
     await batchDelete.commit();
-  }
+  }*/
 }
