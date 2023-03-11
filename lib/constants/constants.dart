@@ -16,14 +16,15 @@ class Constants {
   static const String imgLogo = "assets/images/logo.png";
 
   static const String tipsTrlometro =
-      'Este é o "Trlômetro". Ele mostra o status tecnológico do seu produto.';
+      'This is the "TRLometer". It shows the technological status of your product.';
 
   static const String buttonStart = "INICIAR";
   static const String buttonHome = "HOME";
   static const String buttonIntro = "INTRO";
   static const String buttonDesingParam = "  Parâmetros de Projeto  ";
-  static const String buttonAssessHardware = "Avaliar Hardware";
-  static const String buttonAssessSoftware = "Avaliar Software";
+  static const String buttonAssessHardware = "Measure Hardware";
+  static const String buttonAssessSoftware = "Measure Software";
+  static const String buttonGenReport = "Generate Report";
 
   var teste = "101";
 

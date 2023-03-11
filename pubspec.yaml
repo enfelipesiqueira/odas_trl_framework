@@ -37,6 +37,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  path_provider: ^2.0.1
+
   # Text widget with formatted text using tags.
   styled_text: ^5.1.0
 
@@ -68,6 +70,7 @@ dependencies:
   firebase_ui_auth: ^1.1.9
 
   flutter_platform_widgets: ^2.0.0
+  syncfusion_flutter_pdf: ^20.4.53
 
 dev_dependencies:
   flutter_test:
