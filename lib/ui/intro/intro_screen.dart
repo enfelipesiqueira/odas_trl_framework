@@ -20,29 +20,29 @@ class IntroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     return Layouts.layout(Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              // Widgets do layout coluna
-              children: <Widget>[
-                Menus.menuTop(context),
-                //MenuBar2(),
-                Image.asset(
-                  Constants.imgLogo,
-                  width: 400,
-                  fit: BoxFit.fitWidth,
-                ),
-                SzBx.gap30V(),
-                const Text(Constants.appDescription),
-                SzBx.gap30V(),
-                Buttons.bt1(
-                  Constants.buttonStart,
-                  Colors.blue,
-                  () {
-                    Navigator.of(context).pushNamed(Routes.home);
-                  },
-                ),
-              ]));
-    
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        // Widgets do layout coluna
+        children: <Widget>[
+          Menus.menuTop(context),
+          //MenuBar2(),
+          Image.asset(
+            Constants.imgLogo,
+            width: 400,
+            fit: BoxFit.fitWidth,
+          ),
+          SzBx.gap30V(),
+          const Text(Constants.appDescription),
+          SzBx.gap30V(),
+          Buttons.bt1(
+            Constants.buttonStart,
+            Colors.blue,
+            () {
+              Navigator.of(context).pushNamed(Routes.overview);
+            },
+          ),
+        ]));
+
     /*
     Scaffold(
       /*appBar: AppBar(

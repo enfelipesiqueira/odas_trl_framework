@@ -13,96 +13,86 @@ class TrlScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Layouts.layout(Consumer<TrlProvider>(builder: (_, trlRef, __) {
-                final List<Widget> childrens = [];
-                final bool hardware = trlRef.isHardwareSelected;
-                final trl = trlRef.trl;
+      final List<Widget> childrens = [];
+      final bool hardware = trlRef.isHardwareSelected;
+      final trl = trlRef.trl;
 
-                childrens.add(Menus.menuTop(context));
+      childrens.add(Menus.menuTop(context));
 
-                // Adicionando botões
-                childrens.add(Wrap(
-                    spacing: 10,
-                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      trl > 1
-                          ? Buttons.bt1(
-                              "TRL ${trl - 1}",
-                              hardware
-                                  ? Colors.blue.shade900
-                                  : Colors.green.shade900, () {
-                              trlRef.setTrl(trl - 1);
-                            })
-                          : SizedBox(width: 100),
-                      Buttons.bt1("HOME", Colors.blue, () {
-                        Navigator.of(context).pushNamed(Routes.home);
-                      }),
-                      trl < 9
-                          ? Buttons.bt1(
-                              "TRL ${trl + 1}",
-                              hardware
-                                  ? Colors.blue.shade900
-                                  : Colors.green.shade900, () {
-                              trlRef.setTrl(trl + 1);
-                              //Navigator.of(context).pushNamed(Routes.trl);
-                            })
-                          : SizedBox(width: 100),
-                    ]));
+      // Adicionando botões
+      childrens.add(Wrap(
+          spacing: 10,
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            trl > 1
+                ? Buttons.bt1("TRL ${trl - 1}",
+                    hardware ? Colors.blue.shade900 : Colors.green.shade900,
+                    () {
+                    trlRef.setTrl(trl - 1);
+                  })
+                : SizedBox(width: 100),
+            Buttons.bt1("HOME", Colors.blue, () {
+              Navigator.of(context).pushNamed(Routes.overview);
+            }),
+            trl < 9
+                ? Buttons.bt1("TRL ${trl + 1}",
+                    hardware ? Colors.blue.shade900 : Colors.green.shade900,
+                    () {
+                    trlRef.setTrl(trl + 1);
+                    //Navigator.of(context).pushNamed(Routes.trl);
+                  })
+                : SizedBox(width: 100),
+          ]));
 
-                childrens.add(SzBx.gap30V());
+      childrens.add(SzBx.gap30V());
 
-                childrens.add(Text(
-                  ('${hardware ? 'Hardware' : 'Software'} - TRL $trl'),
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 20,
-                    color: hardware ? Colors.blue[700] : Colors.green[700],
-                  ),
-                ));
+      childrens.add(Text(
+        ('${hardware ? 'Hardware' : 'Software'} - TRL $trl'),
+        style: TextStyle(
+          fontWeight: FontWeight.w800,
+          fontSize: 20,
+          color: hardware ? Colors.blue[700] : Colors.green[700],
+        ),
+      ));
 
+      childrens.add(
+        CheckboxListTile(
+          title: Text(
+            TrlModel.mainIssues[trlRef.trl - 1],
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          value: trlRef.getMainIssueChecked(),
+          onChanged: (bool? value) {
+            trlRef.mainIssueChange();
+          },
+        ),
+      );
 
+      // criando a lista de questões secundárias e seus procedimentos
+      for (var i = 0; i < TrlModel.getNumberSecIssues(hardware, trl); i++) {
+        childrens.add(Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
+                child: CheckboxListTile(
+                  title: Text(TrlModel.getSecIssue(hardware, trl, i + 1)),
+                  value: trlRef.getSecIssueChecked(i + 1),
+                  onChanged: (bool? value) {
+                    trlRef.secIssueChange(i + 1);
+                  },
+                ),
+              ),
+              Buttons.bt1("Procedimentos", Colors.orange, () {
+                trlRef.setQuestion(i + 1);
 
-                childrens.add(
-                  CheckboxListTile(
-                    title: Text(
-                      TrlModel.mainIssues[trlRef.trl - 1],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    value: trlRef.getMainIssueChecked(),
-                    onChanged: (bool? value) {
-                      trlRef.mainIssueChange();
-                    },
-                  ),
-                );
+                Navigator.of(context).pushNamed(Routes.procedure);
+              }),
+            ]));
+      }
 
-                // criando a lista de questões secundárias e seus procedimentos
-                for (var i = 0;
-                    i < TrlModel.getNumberSecIssues(hardware, trl);
-                    i++) {
-                  childrens.add(Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Expanded(
-                          child: CheckboxListTile(
-                            title: Text(
-                                TrlModel.getSecIssue(hardware, trl, i + 1)),
-                            value: trlRef.getSecIssueChecked(i + 1),
-                            onChanged: (bool? value) {
-                              trlRef.secIssueChange(i + 1);
-                            },
-                          ),
-                        ),
-                        Buttons.bt1("Procedimentos", Colors.orange, () {
-                          trlRef.setQuestion(i + 1);
+      return Column(children: childrens);
+    }));
 
-                          Navigator.of(context).pushNamed(Routes.procedure);
-                        }),
-                      ]));
-                }
-
-                
-                return Column(children: childrens);
-              }));
-    
     /*
     Scaffold(
       body: Stack(

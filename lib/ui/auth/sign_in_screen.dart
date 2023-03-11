@@ -27,17 +27,24 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      body: Stack(
-        children: <Widget>[
-          //_buildBackground(),
-          Align(
-            alignment: Alignment.center,
-            child: _buildForm(context),
+        key: _scaffoldKey,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background1.png'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ],
-      ),
-    );
+          child: Stack(
+            children: <Widget>[
+              //_buildBackground(),
+              Align(
+                alignment: Alignment.center,
+                child: _buildForm(context),
+              ),
+            ],
+          ),
+        ));
   }
 
   @override
@@ -63,14 +70,29 @@ class _SignInScreenState extends State<SignInScreen> {
                 TextFormField(
                   controller: _emailController,
                   //style: Theme.of(context).textTheme.body1,
-                  validator: (value) => value!.isEmpty ? 'Erro' : null,
+                  validator: (value) => value!.isEmpty ? 'Invalid email' : null,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.email,
-                        color: Theme.of(context).iconTheme.color,
-                      ),
-                      labelText: 'Email',
-                      border: OutlineInputBorder()),
+                    filled: true,
+                    fillColor: Colors.white,
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    labelText: 'Email',
+                    labelStyle: TextStyle(
+                      color: Color.fromARGB(255, 32, 63, 88), // cor do rótulo
+                      fontSize: 16, // tamanho da fonte do rótulo
+                      fontWeight: FontWeight.bold, // peso da fonte do rótulo
+                      // margem do rótulo (left, top, right, bottom)
+                      // você pode ajustar os valores de acordo com a sua preferência
+                    ),
+                    //contentPadding: EdgeInsets.fromLTRB(30, 20, 30, 30),
+                    enabledBorder: UnderlineInputBorder(
+                      //<-- SEE HERE
+                      borderSide:
+                          BorderSide(width: 3, color: Colors.greenAccent),
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -79,14 +101,30 @@ class _SignInScreenState extends State<SignInScreen> {
                     maxLength: 20,
                     controller: _passwordController,
                     //style: Theme.of(context).textTheme.body1,
-                    validator: (value) => value!.length < 6 ? 'Erro' : null,
+                    validator: (value) =>
+                        value!.length < 6 ? 'Invalid password' : null,
                     decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                        labelText: 'Password',
-                        border: OutlineInputBorder()),
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      labelText: 'Password',
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 32, 63, 88), // cor do rótulo
+                        fontSize: 16, // tamanho da fonte do rótulo
+                        fontWeight: FontWeight.bold, // peso da fonte do rótulo
+                        // margem do rótulo (left, top, right, bottom)
+                        // você pode ajustar os valores de acordo com a sua preferência
+                      ),
+                      counterStyle: TextStyle(color: Colors.white),
+                      enabledBorder: UnderlineInputBorder(
+                        //<-- SEE HERE
+                        borderSide:
+                            BorderSide(width: 3, color: Colors.greenAccent),
+                      ),
+                    ),
                   ),
                 ),
                 authProvider.status == Status.Authenticating
@@ -109,13 +147,23 @@ class _SignInScreenState extends State<SignInScreen> {
                                     _passwordController.text);
 
                             if (!status) {
-                              //_scaffoldKey.currentState!.showSnackBar(SnackBar(
-                              //  content: Text(AppLocalizations.of(context)
-                              //      .translate("loginTxtErrorSignIn")),
-                              //));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Invalid email and/or password',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor:
+                                      Color.fromARGB(255, 136, 50, 42),
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                              /*_scaffoldKey.currentState!.showSnackBar(SnackBar(
+                                content: Text("Teste"),
+                              ));*/
                             } else {
                               Navigator.of(context)
-                                  .pushReplacementNamed(Routes.intro);
+                                  .pushReplacementNamed(Routes.home);
                             }
                           }
                         }),
@@ -128,7 +176,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Center(
                             child: Text(
                           "Don't have an account?",
-                          style: Theme.of(context).textTheme.button,
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         )),
                       ),
                 authProvider.status == Status.Authenticating

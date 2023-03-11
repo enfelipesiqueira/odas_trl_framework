@@ -59,13 +59,13 @@ class ProcedureScreen extends StatelessWidget {
           onTap: (int index) {
             switch (index) {
               case 0:
-                Navigator.of(context).pushNamed(Routes.home);
+                Navigator.of(context).pushNamed(Routes.overview);
                 break;
               case 1:
                 Navigator.pop(context);
                 break;
               case 2:
-                Navigator.of(context).pushNamed(Routes.home);
+                Navigator.of(context).pushNamed(Routes.overview);
                 break;
             }
           }),

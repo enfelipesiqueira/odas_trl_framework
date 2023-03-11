@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:odas_trl_framework/ui/auth/sign_in_screen.dart';
 import 'package:odas_trl_framework/ui/home/home_screen.dart';
+import 'package:odas_trl_framework/ui/overview/overview_screen.dart';
 import 'package:odas_trl_framework/ui/intro/intro_screen.dart';
 import 'package:odas_trl_framework/ui/procedure/procedure_screen.dart';
 import 'package:odas_trl_framework/ui/setting/setting_screen.dart';
@@ -13,6 +14,7 @@ class Routes {
   static const String login = '/login';
   static const String register = '/register';
   static const String intro = '/intro';
+  static const String overview = '/overview';
   static const String home = '/home';
   static const String setting = '/setting';
   static const String procedure = '/procedure';
@@ -24,6 +26,7 @@ class Routes {
     intro: (BuildContext context) => IntroScreen(),
     setting: (BuildContext context) => SettingScreen(),
     home: (BuildContext context) => HomeScreen(),
+    overview: (BuildContext context) => OverviewScreen(),
     trl: (BuildContext context) => TrlScreen(),
     procedure: (BuildContext context) => ProcedureScreen(),
     //create_edit_todo: (BuildContext context) => CreateEditTodoScreen(),
