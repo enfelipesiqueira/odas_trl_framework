@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:odas_trl_framework/routes.dart';
 
 class HomeScreen extends StatelessWidget {
   final String organizationName = 'IEAPM';
@@ -64,13 +65,16 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   ExpansionTile(
-                    backgroundColor: Colors.white,
-                    collapsedBackgroundColor: Colors.white,
+                    textColor: Color.fromARGB(255, 13, 53, 94),
+                    collapsedTextColor: Colors.black,
+                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
+                    collapsedBackgroundColor:
+                        Color.fromRGBO(255, 255, 255, 0.6),
                     title: Text('My Projects'),
                     children: [
                       Container(
                           padding: EdgeInsets.all(20),
-                          color: Color.fromRGBO(255, 255, 255, 0.2),
+                          color: Color.fromRGBO(255, 255, 255, 0.6),
                           child: Column(
                             children: [
                               ListView.builder(
@@ -115,19 +119,22 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      // TODO: Implementar ação para criar novo projeto
+                      Navigator.of(context).pushNamed(Routes.newProject);
                     },
                     child: Text('New Project'),
                   ),
                   SizedBox(height: 10),
                   ExpansionTile(
-                    backgroundColor: Colors.white,
-                    collapsedBackgroundColor: Colors.white,
+                    textColor: Color.fromARGB(255, 13, 53, 94),
+                    collapsedTextColor: Colors.black,
+                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
+                    collapsedBackgroundColor:
+                        Color.fromRGBO(255, 255, 255, 0.6),
                     title: Text('Projects by Author 2'),
                     children: [
                       Container(
                           padding: EdgeInsets.all(20),
-                          color: Color.fromRGBO(255, 255, 255, 0.2),
+                          color: Color.fromRGBO(255, 255, 255, 0.6),
                           child: Column(
                             children: [
                               ListView.builder(
@@ -171,13 +178,16 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   ExpansionTile(
-                    backgroundColor: Colors.white,
-                    collapsedBackgroundColor: Colors.white,
+                    textColor: Color.fromARGB(255, 13, 53, 94),
+                    collapsedTextColor: Colors.black,
+                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.6),
+                    collapsedBackgroundColor:
+                        Color.fromRGBO(255, 255, 255, 0.6),
                     title: Text('Projects by Author 3'),
                     children: [
                       Container(
                           padding: EdgeInsets.all(20),
-                          color: Color.fromRGBO(255, 255, 255, 0.2),
+                          color: Color.fromRGBO(255, 255, 255, 0.6),
                           child: Column(
                             children: [
                               ListView.builder(
@@ -225,22 +235,5 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ));
-  }
-
-  Widget buildProjectList(List<String> projects) {
-    return Column(
-      children: [
-        for (var project in projects)
-          ListTile(
-            title: Text(project),
-            trailing: ElevatedButton(
-              onPressed: () {
-                // TODO: Implementar ação para abrir o projeto
-              },
-              child: Text('Open'),
-            ),
-          ),
-      ],
-    );
   }
 }
