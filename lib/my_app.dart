@@ -8,6 +8,7 @@ import 'package:odas_trl_framework/services/firestore_database.dart';
 import 'package:odas_trl_framework/ui/auth/sign_in_screen.dart';
 import 'package:odas_trl_framework/ui/home/home_screen.dart';
 import 'package:odas_trl_framework/ui/intro/intro_screen.dart';
+import 'package:odas_trl_framework/ui/intro/intro_screen2.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
                 if (userSnapshot.connectionState == ConnectionState.active) {
                   print("userSnapshot.data: $userSnapshot.data");
                   return userSnapshot.data?.uid != 'null'
-                      ? HomeScreen()
+                      ? IntroScreen()
                       : SignInScreen();
                 }
 
