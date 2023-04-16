@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:odas_trl_framework/routes.dart';
 
 class IntroScreen extends StatelessWidget {
   @override
@@ -15,10 +16,10 @@ class IntroScreen extends StatelessWidget {
             SizedBox(height: 32.0),
             ElevatedButton.icon(
               onPressed: () {
-                // Navigate to Desenvolvimento classificado module
+                Navigator.of(context).pushNamed(Routes.home);
               },
-              icon: Icon(Icons.class_outlined),
-              label: Text('Desenvolvimento classificado'),
+              icon: Icon(Icons.developer_board),
+              label: Text('Development and TRL Measurement Module'),
             ),
             SizedBox(height: 16.0),
             ElevatedButton.icon(
@@ -26,7 +27,7 @@ class IntroScreen extends StatelessWidget {
                 // Navigate to Controle, Monitoramento e Testes module
               },
               icon: Icon(Icons.control_camera),
-              label: Text('Controle, Monitoramento e Testes'),
+              label: Text('Control, Monitoring, and Testing Module'),
             ),
             SizedBox(height: 16.0),
             ElevatedButton.icon(
@@ -34,7 +35,7 @@ class IntroScreen extends StatelessWidget {
                 // Navigate to Análise de Dados module
               },
               icon: Icon(Icons.analytics),
-              label: Text('Análise de Dados'),
+              label: Text('Data Analysis and Processing Module'),
             ),
           ],
         ),
