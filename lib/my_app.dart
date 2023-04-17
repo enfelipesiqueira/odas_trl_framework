@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         databaseBuilder: databaseBuilder,
         builder: (BuildContext context, AsyncSnapshot<UserModel> userSnapshot) {
           return MaterialApp(
-            title: 'Ferramenta ODAS-TRL-Framework',
+            title: 'ODAS Development Center',
             routes: Routes.routes,
             //theme: AppThemes.lightTheme,
             //darkTheme: AppThemes.darkTheme,

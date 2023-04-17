@@ -95,7 +95,10 @@ class HomeScreen extends StatelessWidget {
                                             ),
                                           ),
                                           ElevatedButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Navigator.of(context)
+                                                  .pushNamed(Routes.overview);
+                                            },
                                             child: Text('Open'),
                                           ),
                                         ],

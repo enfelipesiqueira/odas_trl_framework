@@ -54,8 +54,7 @@ class Menus {
                     stream: authProvider.user,
                     builder: (context, snapshot) {
                       final UserModel? user = snapshot.data;
-                      return Text(
-                          user != null ? 'Usuário: ${user.email!}' : '');
+                      return Text(user != null ? 'User: ${user.email!}' : '');
                     },
                   ),
                   SzBx.gap10H(),

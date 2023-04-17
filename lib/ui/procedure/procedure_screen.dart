@@ -44,12 +44,13 @@ class ProcedureScreen extends StatelessWidget {
             },
           )),
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
+          currentIndex: 2,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "HOME"),
             BottomNavigationBarItem(
-              icon: Icon(Icons.backspace_rounded),
-              label: "VOLTAR",
+                icon: Icon(Icons.arrow_left), label: "Previous"),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.arrow_right),
+              label: "Next",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

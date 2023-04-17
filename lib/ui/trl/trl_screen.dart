@@ -82,7 +82,7 @@ class TrlScreen extends StatelessWidget {
                   },
                 ),
               ),
-              Buttons.bt1("Procedimentos", Colors.orange, () {
+              Buttons.bt1("Procedure", Colors.orange, () {
                 trlRef.setQuestion(i + 1);
 
                 Navigator.of(context).pushNamed(Routes.procedure);
