@@ -71,7 +71,7 @@ class TrlModel {
       "Foram definidas leis físicas e/ou suposições que suportem um ODAS com inovação (para o Software)?",
       "O Software foi idealizado?"
     ],
-    // TRL 2
+    //// TRL 2
     [
       "Os Requisitos de Desempenho foram definidos e inicialmente quantificados e/ou qualificados (para o Software)?",
       "Os conceitos das inovações propostas são viáveis (para o Software)?",
