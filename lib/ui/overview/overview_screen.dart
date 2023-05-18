@@ -52,11 +52,17 @@ class OverviewScreen extends StatelessWidget {
               ranges: GaugesElements.grs(
                 [0, 20, 40, 60, 90],
                 Colors.brown,
-                [
+                /*[
                   'Escritório',
                   'Ambiente \nde Laboratório',
                   'Ambiente \nRelevante',
                   'Ambiente \nOperacional'
+                ],*/
+                [
+                  'Office',
+                  'Laboratory \nEnvironment',
+                  'Relevant \nEnvironment',
+                  'Operational \nEnvironment'
                 ],
                 0.12,
               ),
@@ -74,10 +80,15 @@ class OverviewScreen extends StatelessWidget {
               ranges: GaugesElements.grs(
                 [10, 40, 70, 90],
                 Colors.amber,
-                [
+                /*[
                   'Pesquisa para \ncomprovar viabilidade',
                   'Demonstração \nde Tecnologia',
                   'Teste, inicialização e \noperações do sistema',
+                ],*/
+                [
+                  'Research \nto prove feasibility',
+                  'Technology \ndemonstration',
+                  'System test, launch,\nand operations',
                 ],
                 0.18,
               ),
@@ -95,10 +106,15 @@ class OverviewScreen extends StatelessWidget {
               ranges: GaugesElements.grs(
                 [0, 30, 60, 80],
                 Colors.purple,
-                [
+                /*[
                   'Pesquisa de \nTecnologia Básica',
                   'Desenvolvimento \nde Tecnologia',
                   'Desenvolvimento \nde sistema/\nsubsistemas',
+                ],*/
+                [
+                  'Basic technology \nresearch',
+                  'Technology \nDevelopment',
+                  'System/\nsubsystem \ndevelopment',
                 ],
                 0.30,
               ),
@@ -166,11 +182,17 @@ class OverviewScreen extends StatelessWidget {
               ranges: GaugesElements.grs(
                 [0, 20, 40, 60, 90],
                 Colors.brown,
-                [
+                /*[
                   'Escritório',
                   'Ambiente \nde Laboratório',
                   'Ambiente \nRelevante',
                   'Ambiente \nOperacional'
+                ],*/
+                [
+                  'Office',
+                  'Laboratory \nEnvironment',
+                  'Relevant \nEnvironment',
+                  'Operational \nEnvironment'
                 ],
                 0.12,
               ),
@@ -189,10 +211,15 @@ class OverviewScreen extends StatelessWidget {
               ranges: GaugesElements.grs(
                 [10, 40, 70, 90],
                 Colors.amber,
-                [
+                /*[
                   'Pesquisa para \ncomprovar viabilidade',
                   'Demonstração \nde Tecnologia',
                   'Teste, inicialização e \noperações do sistema',
+                ],*/
+                [
+                  'Research \nto prove feasibility',
+                  'Technology \ndemonstration',
+                  'System test, launch,\nand operations',
                 ],
                 0.18,
               ),
@@ -211,10 +238,15 @@ class OverviewScreen extends StatelessWidget {
               ranges: GaugesElements.grs(
                 [0, 30, 60, 80],
                 Colors.purple,
-                [
+                /*[
                   'Pesquisa de \nTecnologia Básica',
                   'Desenvolvimento \nde Tecnologia',
                   'Desenvolvimento \nde sistema/\nsubsistemas',
+                ],*/
+                [
+                  'Basic technology \nresearch',
+                  'Technology \nDevelopment',
+                  'System/\nsubsystem \ndevelopment',
                 ],
                 0.30,
               ),

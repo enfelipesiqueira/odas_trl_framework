@@ -1,6 +1,7 @@
 class TrlModel {
   static List<String> mainIssues = [
-    "Os princípios básicos foram observados e relatados?",
+    //"Os princípios básicos foram observados e relatados?",
+    "Have the basic principles been observed and reported?",
     "Conceito de tecnologia e/ou aplicação foi formulada?",
     "Função crítica analítica e experimental e/ou prova de conceito característica realizada?",
     "Validação de componentes e/ou placas de ensaio em ambiente de laboratório realizada?",
@@ -14,12 +15,18 @@ class TrlModel {
   static List<List<String>> hardSecIssues = [
     // TRL 1
     [
-      "Foram identificados os usuários potenciais do ODAS? (Motivação)",
+      /*"Foram identificados os usuários potenciais do ODAS? (Motivação)",
       "O ambiente de operação, as variáveis oceânicas de interesse e suas formas de obtenção foram identificados? (Objetivos)",
       "Foram compreendidos os princípios básicos de funcionamento dos elementos típicos de um ODAS in situ (para o Hardware)?",
       "Plataformas e variáveis oceânicas a serem medidas pelo ODAS foram identificadas?",
       "Foram definidas leis físicas e/ou suposições que suportem um ODAS com inovação (para o Hardware)?",
-      "O Hardware foi idealizado?"
+      "O Hardware foi idealizado?"*/
+      "Have potential ODAS users been identified? (Demand)",
+      "Has the operational environment, oceanic variables of interest, and their methods of obtaining been identified? (Objectives)",
+      "Have the basic operation principles of typical in situ ODAS elements (for Hardware) been understood?",
+      "Have platforms and oceanic variables to be measured by ODAS been identified?",
+      "Have physical laws and/or assumptions supporting an innovative ODAS (for Hardware) been defined?",
+      "Has the Hardware been conceptualized?"
       //"Foram compreendidas as características principais de elementos que devem constituir o ODAS?"
       //    "(Plataforma de instalação, Microcontroladores, Instrumentos/Transdutores/Sensores, Sistemas de energia, de armazenamento, de comunicação, de segurança, entre outros)",
       //"Foram definidos local e pessoal de desenvolvimento do ODAS?",
@@ -40,7 +47,7 @@ class TrlModel {
     // TRL 3
     [
       "Os desempenhos requisitados foram alcançados inicialmente (para o Hardware)?", //testes iniciais nos componentes aquisitados
-      
+
       //"Foi realizada a seleção e aquisição de elementos constituintes?",
     ],
     // TRL 4
@@ -72,8 +79,9 @@ class TrlModel {
       "Uma primeira versão do Software foi codificada?",
     ],
     // TRL 3
-    ["Os desempenhos requisitados foram alcançados inicialmente (para o Software)?",
-      ],
+    [
+      "Os desempenhos requisitados foram alcançados inicialmente (para o Software)?",
+    ],
     // TRL 2
     [""],
     // TRL 2
