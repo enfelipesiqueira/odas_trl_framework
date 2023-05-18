@@ -8,6 +8,8 @@ import 'package:odas_trl_framework/ui/procedure/procedure_screen.dart';
 import 'package:odas_trl_framework/ui/setting/setting_screen.dart';
 import 'package:odas_trl_framework/ui/trl/trl_screen.dart';
 
+import 'models/cards.dart';
+
 class Routes {
   Routes._(); //this is to prevent anyone from instantiate this object
 
@@ -21,6 +23,7 @@ class Routes {
   static const String setting = '/setting';
   static const String procedure = '/procedure';
   static const String trl = '/trl';
+  static const String cards = '/card';
 
   static final routes = <String, WidgetBuilder>{
     //splash: (BuildContext context) => SplashScreen(),
@@ -34,5 +37,6 @@ class Routes {
     procedure: (BuildContext context) => ProcedureScreen(),
     //create_edit_todo: (BuildContext context) => CreateEditTodoScreen(),
     login: (BuildContext context) => SignInScreen(),
+    cards: (BuildContext context) => Cards(),
   };
 }

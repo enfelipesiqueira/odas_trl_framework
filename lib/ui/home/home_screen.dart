@@ -119,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(Routes.newProject);
+                      Navigator.of(context).pushNamed(Routes.cards);
                     },
                     child: Text('New Project'),
                   ),
