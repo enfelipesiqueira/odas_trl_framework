@@ -45,16 +45,19 @@
   <script
     type="text/javascript"> pdfjsLib.GlobalWorkerOptions.workerSrc = "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js"; </script>
 
-    <script>
-      async function download() {
-        var pdfAsDataUri = "data:application/pdf;base64, " + pdfData;
-        var link = document.createElement('a');
-        link.download = filename;
-        link.href = pdfAsDataUri;
-        link.type = 'application/pdf';
-        link.click();
-      }
+  <script>
+    async function download() {
+      var pdfAsDataUri = "data:application/pdf;base64, " + pdfData;
+      var link = document.createElement('a');
+      link.download = filename;
+      link.href = pdfAsDataUri;
+      link.type = 'application/pdf';
+      link.click();
+    }
   </script>
+
+  <script src="assets/packages/flutter_tex/js/flutter_tex.js"></script>
+  <script type="text/javascript">window.flutterWebRenderer = "canvaskit";</script>
 </head>
 
 <body>

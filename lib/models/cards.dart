@@ -1,214 +1,200 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:provider/provider.dart';
 
-class Quiz {
-  final String statement;
-  final List<QuizOption> options;
-  final String correctOptionId;
+class MeuModelo with ChangeNotifier {
+  String _valor = 'Valor inicial';
 
-  Quiz(
-      {required this.statement,
-      required this.options,
-      required this.correctOptionId});
+  String get valor => _valor;
+
+  void atualizarValor(String novoValor) {
+    _valor = novoValor;
+    notifyListeners();
+  }
 }
 
-class QuizOption {
-  final String id;
-  final String option;
-
-  QuizOption(this.id, this.option);
-}
-
-class Cards extends StatefulWidget {
-  final TeXViewRenderingEngine renderingEngine;
-
-  const Cards(
-      {Key? key, this.renderingEngine = const TeXViewRenderingEngine.katex()})
-      : super(key: key);
-
-  @override
-  _CardsState createState() => _CardsState();
-}
-
-class _CardsState extends State<Cards> {
-  int currentQuizIndex = 0;
-  String selectedOptionId = "";
-  bool isWrong = false;
-
-  List<Quiz> quizList = [
-    Quiz(
-      statement: r"""<h3>What is the correct form of quadratic formula?</h3>""",
-      options: [
-        QuizOption(
-          "id_1",
-          r""" <h2>(A)   \(x = {-b \pm \sqrt{b^2+4ac} \over 2a}\)</h2>""",
-        ),
-        QuizOption(
-          "id_2",
-          r""" <h2>(B)   \(x = {b \pm \sqrt{b^2-4ac} \over 2a}\)</h2>""",
-        ),
-        QuizOption(
-          "id_3",
-          r""" <h2>(C)   \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}\)</h2>""",
-        ),
-        QuizOption(
-          "id_4",
-          r""" <h2>(D)   \(x = {-b + \sqrt{b^2+4ac} \over 2a}\)</h2>""",
-        ),
-      ],
-      correctOptionId: "id_3",
-    ),
-    Quiz(
-      statement:
-          r"""<h3>Choose the correct mathematical form of Bohr's Radius.</h3>""",
-      options: [
-        QuizOption(
-          "id_1",
-          r""" <h2>(A)   \( a_0 = \frac{{\hbar ^2 }}{{m_e ke^2 }} \)</h2>""",
-        ),
-        QuizOption(
-          "id_2",
-          r""" <h2>(B)   \( a_0 = \frac{{\hbar ^2 }}{{m_e ke^3 }} \)</h2>""",
-        ),
-        QuizOption(
-          "id_3",
-          r""" <h2>(C)   \( a_0 = \frac{{\hbar ^3 }}{{m_e ke^2 }} \)</h2>""",
-        ),
-        QuizOption(
-          "id_4",
-          r""" <h2>(D)   \( a_0 = \frac{{\hbar }}{{m_e ke^2 }} \)</h2>""",
-        ),
-      ],
-      correctOptionId: "id_1",
-    ),
-    Quiz(
-      statement: r"""<h3>Select the correct Chemical Balanced Equation.</h3>""",
-      options: [
-        QuizOption(
-          "id_1",
-          r""" <h2>(A)   \( \ce{CO + C -> 2 CO} \)</h2>""",
-        ),
-        QuizOption(
-          "id_2",
-          r""" <h2>(B)   \( \ce{CO2 + C ->  CO} \)</h2>""",
-        ),
-        QuizOption(
-          "id_3",
-          r""" <h2>(C)   \( \ce{CO + C ->  CO} \)</h2>""",
-        ),
-        QuizOption(
-          "id_4",
-          r""" <h2>(D)   \( \ce{CO2 + C -> 2 CO} \)</h2>""",
-        ),
-      ],
-      correctOptionId: "id_4",
-    ),
-  ];
+class MyDialog extends StatelessWidget {
+  final TextEditingController _editedTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("TeXView Quiz"),
-      ),
-      body: ListView(
-        physics: const ScrollPhysics(),
-        children: <Widget>[
-          Text(
-            'Quiz ${currentQuizIndex + 1}/${quizList.length}',
-            style: const TextStyle(fontSize: 20),
-            textAlign: TextAlign.center,
-          ),
-          TeXView(
-            renderingEngine: widget.renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(quizList[currentQuizIndex].statement,
-                  style:
-                      const TeXViewStyle(textAlign: TeXViewTextAlign.center)),
-              TeXViewGroup(
-                  children: quizList[currentQuizIndex]
-                      .options
-                      .map((QuizOption option) {
-                    return TeXViewGroupItem(
-                        rippleEffect: false,
-                        id: option.id,
-                        child: TeXViewDocument(option.option,
-                            style: const TeXViewStyle(
-                                padding: TeXViewPadding.all(10))));
-                  }).toList(),
-                  selectedItemStyle: TeXViewStyle(
-                      borderRadius: const TeXViewBorderRadius.all(10),
-                      border: TeXViewBorder.all(TeXViewBorderDecoration(
-                          borderWidth: 3, borderColor: Colors.green[900])),
-                      margin: const TeXViewMargin.all(10)),
-                  normalItemStyle:
-                      const TeXViewStyle(margin: TeXViewMargin.all(10)),
-                  onTap: (id) {
-                    selectedOptionId = id;
-                    setState(() {
-                      isWrong = false;
-                    });
-                  })
-            ]),
-            style: const TeXViewStyle(
-              margin: TeXViewMargin.all(5),
-              padding: TeXViewPadding.all(10),
-              borderRadius: TeXViewBorderRadius.all(10),
-              border: TeXViewBorder.all(
-                TeXViewBorderDecoration(
-                    borderColor: Colors.blue,
-                    borderStyle: TeXViewBorderStyle.solid,
-                    borderWidth: 5),
-              ),
-              backgroundColor: Colors.white,
+    final modelo = Provider.of<MeuModelo>(context, listen: false);
+    _editedTextController.text = modelo.valor;
+
+    return AlertDialog(
+      title: Text('Equação'),
+      content: Container(
+        constraints: BoxConstraints(maxWidth: 800),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
+                  controller: _editedTextController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Input TeX equation here',
+                  ),
+                  onChanged: (value) {
+                    modelo.atualizarValor(value);
+                  }),
             ),
-          ),
-          if (isWrong)
-            const Padding(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "Wrong answer!!! Please choose a correct option.",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.red),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      "Flutter Math's output",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1),
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    alignment: Alignment.topCenter,
+                    padding: EdgeInsets.all(10),
+                    child: Consumer<MeuModelo>(
+                      builder: (context, modelo, _) {
+                        //_textEditingController.text = modelo.valor;
+                        return SelectableMath.tex(
+                          _editedTextController.text,
+                          textStyle: TextStyle(fontSize: 22),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (currentQuizIndex > 0) {
-                      selectedOptionId = "";
-                      currentQuizIndex--;
-                    }
-                  });
-                },
-                child: const Text("Previous"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (selectedOptionId ==
-                        quizList[currentQuizIndex].correctOptionId) {
-                      selectedOptionId = "";
-                      if (currentQuizIndex != quizList.length - 1) {
-                        currentQuizIndex++;
-                      }
-                    } else {
-                      isWrong = true;
-                    }
-                  });
-                },
-                child: const Text("Next"),
-              ),
-            ],
-          )
-        ],
+          ],
+        ),
       ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            //final novoValor = _textEditingController.text;
+            //modelo.atualizarValor(novoValor);
+            Navigator.of(context).pop();
+          },
+          child: Text('Salvar'),
+        ),
+      ],
     );
+  }
+}
+
+class Cards extends StatelessWidget {
+  final TextEditingController _textEditingController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Column(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (_) => ChangeNotifierProvider.value(
+                value: Provider.of<MeuModelo>(context, listen: false),
+                child: MyDialog(),
+              ),
+            );
+          },
+          child: Text('Abrir Dialog'),
+        ),
+        /*
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Equation Dialog'),
+                      content: Container(
+                        constraints: BoxConstraints(maxWidth: 800),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: TextField(
+                                controller: _textEditingController,
+                                keyboardType: TextInputType.multiline,
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Input TeX equation here',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                  Center(
+                                    child: Text(
+                                      "Flutter Math's output",
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(width: 1),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    alignment: Alignment.topCenter,
+                                    padding: EdgeInsets.all(10),
+                                    child: SelectableMath.tex(
+                                      _textEditingController.text,
+                                      textStyle: TextStyle(fontSize: 22),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      actions: <Widget>[
+                        ElevatedButton(
+                          child: Text('Close'),
+                          onPressed: () {
+                            final novoValor = _textEditingController.text;
+                            modelo.atualizarValor(novoValor);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Text('Open Equation Dialog'),
+            ),
+            */
+        SizedBox(height: 20),
+        Consumer<MeuModelo>(
+          builder: (context, modelo, _) {
+            //_textEditingController.text = modelo.valor;
+            return Text(
+              'Equation Value: ${modelo.valor}',
+              style: TextStyle(fontSize: 18),
+            );
+          },
+        ),
+      ],
+    ));
   }
 }
